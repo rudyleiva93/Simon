@@ -26,16 +26,14 @@ $(".btn").click(function() {
 
   console.log(userClickedPattern);
 
-  if(gamePattern.length === userClickedPattern.length){
-    checkAnswer(userClickedPattern[userClickedPattern.length - 1]);
-    userClickedPattern.length = 0;
-    nextSequence();
-  }
+  checkAnswer(userClickedPattern.length-1);
 
 });
 
 
 function nextSequence() {
+
+  userClickedPattern = [];
 
   level++;
   $("#level-title").html("Level " + level);
@@ -69,17 +67,18 @@ function animatePress(currentColor) {
 
 function checkAnswer(currentlevel) {
 
-  if(currentlevel === gamePattern[gamePattern.length - 1]){
-    for(var i = 0; i < gamePattern.length - 1; i++){
-      if(gamePattern[i] === userClickedPattern[i]){
-        console.log("success");
-      }
-    }
-
+  if(userClickedPattern[currentlevel] === gamePattern[currentlevel]) {
     console.log("success");
+
+    if(userClickedPattern.length === gamePattern.length) {
+
+      setTimeout(function() {
+        nextSequence();
+      }, 1000);
+    }
   }
-  else{
-    console.log("wrong");
+  else {
+    console.log("worng");
   }
 
  }
