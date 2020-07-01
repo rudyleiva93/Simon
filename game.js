@@ -23,7 +23,15 @@ $(".btn").click(function() {
 
   playSound(userChosenColor);
   animatePress(userChosenColor);
-  
+
+  console.log(userClickedPattern);
+
+  if(gamePattern.length === userClickedPattern.length){
+    checkAnswer(userClickedPattern[userClickedPattern.length - 1]);
+    userClickedPattern.length = 0;
+    nextSequence();
+  }
+
 });
 
 
@@ -38,6 +46,8 @@ function nextSequence() {
 
   $("#" + randomChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);
   playSound(randomChosenColor);
+
+  console.log(gamePattern);
 
 }
 
@@ -56,3 +66,20 @@ function animatePress(currentColor) {
   }, 100);
 
 }
+
+function checkAnswer(currentlevel) {
+
+  if(currentlevel === gamePattern[gamePattern.length - 1]){
+    for(var i = 0; i < gamePattern.length - 1; i++){
+      if(gamePattern[i] === userClickedPattern[i]){
+        console.log("success");
+      }
+    }
+
+    console.log("success");
+  }
+  else{
+    console.log("wrong");
+  }
+
+ }
