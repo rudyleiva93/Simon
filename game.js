@@ -81,11 +81,23 @@ function checkAnswer(currentlevel) {
     console.log("worng");
 
     $("body").addClass("game-over");
+
     playSound("wrong");
     setTimeout(function() {
       $("body").removeClass("game-over");
     }, 200);
 
+    $("#level-title").text("Game Over! Press any key to restart.");
+    startOver();
+
   }
 
+ }
+
+ function startOver() {
+
+   started = false;
+   level = 0;
+   gamePattern = [];
+   
  }
